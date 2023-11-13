@@ -11,6 +11,11 @@ import { NipComponent } from './forms/nip/nip.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyComponent } from './forms/currency/currency.component';
+import { InvoiceItemComponent } from './forms/invoice-item/invoice-item.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { InvoiceTotalComponent } from './components/invoice-total/invoice-total.component';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +23,8 @@ import { CurrencyComponent } from './forms/currency/currency.component';
     InvoiceContractorComponent,
     NipComponent,
     CurrencyComponent,
+    InvoiceItemComponent,
+    InvoiceTotalComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +32,11 @@ import { CurrencyComponent } from './forms/currency/currency.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
+    MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

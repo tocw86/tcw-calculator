@@ -1,12 +1,20 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
-  "plugins": ["prefer-arrow"],
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "plugins": [
+    "prefer-arrow"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["tsconfig.json"],
+        "project": [
+          "tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [
@@ -16,21 +24,26 @@
       ],
       "rules": {
         "no-shadow": "off",
-        "@typescript-eslint/explicit-function-return-type": ["error", {
-          "allowedNames": [
-            "constructor"
-          ]
-        }
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowedNames": [
+              "constructor"
+            ]
+          }
         ],
-        "@typescript-eslint/no-shadow": ["off"],
+        "@typescript-eslint/no-shadow": [
+          "off"
+        ],
         "@typescript-eslint/naming-convention": [
           "warn",
           {
             "selector": "variable",
-            "format": ["camelCase"]
+            "format": [
+              "camelCase"
+            ]
           }
         ],
-
         "@angular-eslint/component-selector": [
           "error",
           {
@@ -83,8 +96,14 @@
             "ignoreParameters": true
           }
         ],
-        "@typescript-eslint/semi": ["off", null],
-        "arrow-parens": ["off", "always"],
+        "@typescript-eslint/semi": [
+          "off",
+          null
+        ],
+        "arrow-parens": [
+          "off",
+          "always"
+        ],
         "id-blacklist": "error",
         "max-len": [
           "error",
@@ -96,11 +115,23 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
       "rules": {
         "@angular-eslint/template/eqeqeq": "off"
       }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }

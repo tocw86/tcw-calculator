@@ -1,0 +1,30 @@
+<mat-grid-list cols="4" rowHeight="4:1" [formGroup]="form">
+  <mat-grid-tile>
+    <mat-form-field appearance="fill">
+      <mat-label>Stawka VAT</mat-label>
+      <mat-select formControlName="vatRate">
+        <mat-option *ngFor="let item of vatRates" [value]="item.value">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <input matInput formControlName="net" />
+      <mat-hint>Pole wspiera obliczenia</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <input matInput formControlName="vat" />
+      <mat-hint>Pole wspiera obliczenia</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <input matInput formControlName="gross" />
+      <mat-hint>Pole wspiera obliczenia</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -15,3 +15,26 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.ic {
+  &-container {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    margin-top: 1rem;
+    max-width: 960px;
+    & .row {
+      display: flex;
+
+      & .column {
+        flex: 1;
+      }
+    }
+  }
+}
+.text-bold {
+  font-weight: bold;
+}
+.full-width {
+  width: 100%;
+}
