@@ -1,0 +1,16 @@
+.choose {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__box {
+    display: flex;
+  }
+
+  a {
+    display: flex;
+    cursor: pointer;
+  }
+}
