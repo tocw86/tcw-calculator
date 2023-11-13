@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'tcw-invoice-contractor',
   templateUrl: './invoice-contractor.component.html',
-  styleUrls: ['./invoice-contractor.component.scss']
+  styleUrls: ['./invoice-contractor.component.scss'],
 })
 export class InvoiceContractorComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  public ngOnInit(): void {
-  }
-
+  public ngOnInit(): void {}
 }
