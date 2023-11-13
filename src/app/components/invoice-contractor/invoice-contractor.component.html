@@ -30,8 +30,8 @@
       </mat-grid-tile>
     </mat-grid-list>
 
-    <div *ngFor="let item of invoices.controls">
-      <tcw-invoice-item [form]="transformToFormGroup(item)"></tcw-invoice-item>
+    <div *ngFor="let item of invoices.controls;let i = index">
+      <tcw-invoice-item [form]="transformToFormGroup(item)" (emmitRemoveItem)="removeFromInvoices(i)"></tcw-invoice-item>
     </div>
     <button mat-raised-button (click)="addInvoice()">Dodaj wiersz</button>
     <div style="margin-top: 1rem">

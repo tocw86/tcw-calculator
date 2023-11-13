@@ -18,6 +18,7 @@ import { InvoiceTotalComponent } from './components/invoice-total/invoice-total.
 import { StoreModule } from '@ngrx/store';
 import { CurrencyPipe } from '@angular/common';
 import { CurrencyFormatterDirective } from './core/directives/currency-formatter.directive';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +38,12 @@ import { CurrencyFormatterDirective } from './core/directives/currency-formatter
     MatInputModule,
     MatSelectModule,
     MatGridListModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}, {}),
   ],
-  providers: [
-    CurrencyPipe
-  ],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

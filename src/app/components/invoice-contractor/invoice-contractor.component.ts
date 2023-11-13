@@ -14,17 +14,18 @@ import { Invoice } from 'src/app/core/models/invoice';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceContractorComponent implements OnInit {
+
   public form: FormGroup = new FormGroup({
     invoices: new FormArray([]),
   });
 
-  constructor() {}
+  constructor() { }
 
   public get invoices(): FormArray {
     return this.form.get('invoices') as FormArray;
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void { }
 
   public onSubmit(form: FormGroup): void {
     if (!form.invalid) {
@@ -46,5 +47,9 @@ export class InvoiceContractorComponent implements OnInit {
 
   public transformToFormGroup(input: AbstractControl): FormGroup {
     return input as FormGroup;
+  }
+
+  public removeFromInvoices(index: number): void {
+    this.invoices.removeAt(index);
   }
 }

@@ -11,20 +11,25 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="net" appCurrencyFormatter/>
+      <input matInput formControlName="net" appCurrencyFormatter />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="vat" appCurrencyFormatter/>
+      <input matInput formControlName="vat" appCurrencyFormatter />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="gross" appCurrencyFormatter/>
+      <input matInput formControlName="gross" appCurrencyFormatter />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
     </mat-form-field>
+    <span>
+      <button mat-icon-button color="error" aria-label="Usunięcie faktury" (click)="removeItem()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </span>
   </mat-grid-tile>
 </mat-grid-list>
