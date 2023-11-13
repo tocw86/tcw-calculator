@@ -1,17 +1,21 @@
-<div>
+<div class="container">
   <h1>Faktura kontraktowca</h1>
-
-
-  <section>
-    <div class="example-label">Raised</div>
-    <div class="example-button-row">
-      <button mat-raised-button>Basic</button>
-      <button mat-raised-button color="primary">Primary</button>
-      <button mat-raised-button color="accent">Accent</button>
-      <button mat-raised-button color="warn">Warn</button>
-      <button mat-raised-button disabled>Disabled</button>
-      <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+  <form
+    *ngIf="form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit(form)"
+    #myform="ngForm"
+  >
+    <div class="row">
+      <div class="column">
+        <tcw-nip [form]="form"></tcw-nip>
+      </div>
+      <div class="column">
+        <tcw-currency [form]="form"></tcw-currency>
+      </div>
     </div>
-  </section>
-
+    <div>
+      {{ form.value | json }}
+    </div>
+  </form>
 </div>

@@ -1,12 +1,12 @@
-@import '~@angular/material/theming';
-@import 'scss/orange';
+@import "~@angular/material/theming";
+@import "scss/orange";
 $custom-primary: mat-palette($mat-orange);
 $custom-accent: mat-palette($mat-indigo, A200, A100, A400);
 $custom-theme: mat-light-theme(
-    (
-        color: (
-            primary: $custom-primary,
-            accent: $custom-accent,
-        )
-    )
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+    ),
+  )
 );

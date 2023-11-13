@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 $mat-orange: (
   50: #fff3e0,
@@ -30,5 +30,5 @@ $mat-orange: (
     A200: $dark-primary-text,
     A400: $dark-primary-text,
     A700: $dark-primary-text,
-  )
+  ),
 );
