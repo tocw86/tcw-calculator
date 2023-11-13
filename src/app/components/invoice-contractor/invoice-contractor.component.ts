@@ -6,6 +6,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { Invoice } from 'src/app/core/models/invoice';
+import { numbersAndDotValidator } from 'src/app/core/validators/numbers-and-dot-validator';
 
 @Component({
   selector: 'tcw-invoice-contractor',
@@ -14,18 +15,17 @@ import { Invoice } from 'src/app/core/models/invoice';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceContractorComponent implements OnInit {
-
   public form: FormGroup = new FormGroup({
     invoices: new FormArray([]),
   });
 
-  constructor() { }
+  constructor() {}
 
   public get invoices(): FormArray {
     return this.form.get('invoices') as FormArray;
   }
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {}
 
   public onSubmit(form: FormGroup): void {
     if (!form.invalid) {
@@ -39,9 +39,9 @@ export class InvoiceContractorComponent implements OnInit {
   public createInvoiceItemGroup(): FormGroup {
     return new FormGroup({
       vatRate: new FormControl(null),
-      net: new FormControl(0),
-      vat: new FormControl(0),
-      gross: new FormControl(0),
+      net: new FormControl(0, [numbersAndDotValidator()]),
+      vat: new FormControl(0, [numbersAndDotValidator()]),
+      gross: new FormControl(0, [numbersAndDotValidator()]),
     });
   }
 

@@ -2,7 +2,10 @@
   <mat-grid-tile>
     <mat-form-field appearance="fill">
       <mat-label>Stawka VAT</mat-label>
-      <mat-select formControlName="vatRate">
+      <mat-select
+        formControlName="vatRate"
+        (selectionChange)="onValueChanged()"
+      >
         <mat-option *ngFor="let item of vatRates" [value]="item.value">
           {{ item.name }}
         </mat-option>
@@ -11,23 +14,55 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="net" appCurrencyFormatter />
+      <input
+        matInput
+        formControlName="net"
+        appCurrencyFormatter
+        (change)="onValueChanged()"
+        #inputNet
+      />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
+      <mat-error *ngIf="form.controls.net?.hasError('invalidNumber')">
+        Błędna pole. Tylko liczby i .
+      </mat-error>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="vat" appCurrencyFormatter />
+      <input
+        matInput
+        formControlName="vat"
+        appCurrencyFormatter
+        (change)="onValueChanged()"
+        #inputVat
+      />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
+      <mat-error *ngIf="form.controls.vat?.hasError('invalidNumber')">
+        Błędna pole. Tylko liczby i .
+      </mat-error>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
-      <input matInput formControlName="gross" appCurrencyFormatter />
+      <input
+        matInput
+        formControlName="gross"
+        appCurrencyFormatter
+        (change)="onGrossValueChanged()"
+        #inputGross
+      />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
+      <mat-error *ngIf="form.controls.gross?.hasError('invalidNumber')">
+        Błędna pole. Tylko liczby i .
+      </mat-error>
     </mat-form-field>
     <span>
-      <button mat-icon-button color="error" aria-label="Usunięcie faktury" (click)="removeItem()">
+      <button
+        mat-icon-button
+        color="error"
+        aria-label="Usunięcie faktury"
+        (click)="removeItem()"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </span>
