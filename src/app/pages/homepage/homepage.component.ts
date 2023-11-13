@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'dmg-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  selector: 'tcw-homepage',
+  template: `<tcw-invoice-contractor></tcw-invoice-contractor>`,
 })
 export class HomepageComponent implements OnInit {
   constructor() {}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'dmg-root',
+  selector: 'tcw-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
