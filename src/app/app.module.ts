@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CurrencyFormatterDirective } from './core/directives/currency-formatter.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { InvoiceHeaderComponent } from './components/invoice-header/invoice-header.component';
+import { CALCULATION_SERVICE_TOKEN, CalculationsService } from './core/services/calculations.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,7 @@ import { InvoiceHeaderComponent } from './components/invoice-header/invoice-head
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe, { provide: CALCULATION_SERVICE_TOKEN, useExisting: CalculationsService }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

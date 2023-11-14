@@ -57,7 +57,7 @@ export class InvoiceContractorComponent implements OnInit {
         gross: new FormControl(0, [numbersAndDotValidator()]),
       },
       {
-        validator: ConfirmedValidator('vatRate', 'net', 'vat', 'gross'),
+        validator: ConfirmedValidator('vatRate', 'net', 'vat', 'gross', this.calculationsService),
       },
     );
   }

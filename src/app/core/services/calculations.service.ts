@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { Invoice, InvoiceSummary } from '../models/invoice';
+export const CALCULATION_SERVICE_TOKEN = new InjectionToken<CalculationsService>('CalculationsService');
 
 @Injectable({
   providedIn: 'root',
@@ -11,24 +12,24 @@ export class CalculationsService {
   public calculateTotal(invoices: Invoice[]): InvoiceSummary {
     return invoices.reduce<InvoiceSummary>(
       (acc, invoice) => ({
-        totalNet: this.round(Number(acc.totalNet) + Number(invoice.net)),
-        totalVat: this.round(Number(acc.totalVat) + Number(invoice.vat)),
-        totalGross: this.round(Number(acc.totalGross) + Number(invoice.gross)),
+        totalNet: Number(this.round(Number(acc.totalNet) + Number(invoice.net))),
+        totalVat: Number(this.round(Number(acc.totalVat) + Number(invoice.vat))),
+        totalGross: Number(this.round(Number(acc.totalGross) + Number(invoice.gross))),
       }),
       { totalNet: 0, totalVat: 0, totalGross: 0 },
     );
   }
 
   public calculateNet(net: number, vat: number): number {
-    return this.round(this.sanitizeNumber(net) * (1 + Number(vat / 100))) ?? 0;
+    return Number(this.round(this.sanitizeNumber(net) * (1 + Number(vat / 100)))) ?? 0;
   }
 
   public caluculateGross(net: number, vat: number): number {
-    return this.round(Number(this.sanitizeNumber(net)) + Number(vat));
+    return Number(this.round(Number(this.sanitizeNumber(net)) + Number(vat)));
   }
 
   public caluculateVat(net: number, vat: number): number {
-    return this.round(this.sanitizeNumber(net) * (vat / 100));
+    return Number(this.round(this.sanitizeNumber(net) * (vat / 100)));
   }
 
   public formatCurrency(value: number | string): string | null | number {
@@ -39,8 +40,8 @@ export class CalculationsService {
     }
   }
 
-  public round(value: number | string): number {
-    return Math.round(Number(this.sanitizeNumber(value)) * 10) / 10;
+  public round(value: number | string): string {
+    return Number(this.sanitizeNumber(value)).toFixed(2);
   }
   public sanitizeNumber(value: string | number): number {
     const val = value.toString();
