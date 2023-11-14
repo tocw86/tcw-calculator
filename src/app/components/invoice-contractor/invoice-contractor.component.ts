@@ -5,11 +5,9 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Invoice } from 'src/app/core/models/invoice';
+import { InvoiceSummary } from 'src/app/core/models/invoice';
 import { CalculationsService } from 'src/app/core/services/calculations.service';
 import { numbersAndDotValidator } from 'src/app/core/validators/numbers-and-dot-validator';
-import { save } from 'src/app/store/total.actions';
 
 @Component({
   selector: 'tcw-invoice-contractor',
@@ -18,13 +16,19 @@ import { save } from 'src/app/store/total.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceContractorComponent implements OnInit {
+
+  public total: InvoiceSummary = {
+    totalGross: 0,
+    totalNet: 0,
+    totalVat: 0,
+  };
+
   public form: FormGroup = new FormGroup({
     invoices: new FormArray([]),
   });
 
   constructor(
     private calculationsService: CalculationsService,
-    private store: Store,
   ) {}
 
   public get invoices(): FormArray {
@@ -61,7 +65,6 @@ export class InvoiceContractorComponent implements OnInit {
 
   public calculateTotal(): void {
     const { invoices } = this.form.value;
-    const total = this.calculationsService.calculateTotal(invoices);
-    this.store.dispatch(save({  total }));
+    this.total = this.calculationsService.calculateTotal(invoices);
   }
 }

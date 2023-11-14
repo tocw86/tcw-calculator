@@ -1,4 +1,3 @@
-import { totalReducer } from './store/total.reducer';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -44,7 +43,6 @@ import { InvoiceHeaderComponent } from './components/invoice-header/invoice-head
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ total: totalReducer }),
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent],

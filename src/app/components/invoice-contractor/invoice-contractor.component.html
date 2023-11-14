@@ -26,10 +26,10 @@
     </div>
     <button mat-raised-button (click)="addInvoice()">Dodaj wiersz</button>
     <div style="margin-top: 1rem">
-      <tcw-invoice-total></tcw-invoice-total>
+      <tcw-invoice-total [total]="total"></tcw-invoice-total>
     </div>
     <div>
-      {{ form.value | json }}
+      <pre role="json">{{ form.value | json }}</pre>
     </div>
   </form>
 </div>
