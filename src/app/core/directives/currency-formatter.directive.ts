@@ -22,7 +22,7 @@ export class CurrencyFormatterDirective {
   }
 
   private formatCurrency(value: number | string): void {
-    if (value) {
+    if (value && value.toString().search(',') === -1) {
       {
         const formattedValue = this.calculations.formatCurrency(value);
         this.renderer.setProperty(

@@ -23,7 +23,7 @@
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
       <mat-error *ngIf="form.controls.net?.hasError('invalidNumber')">
-        Błędna pole. Tylko liczby i .
+        Błędne pole. Tylko liczby i .
       </mat-error>
     </mat-form-field>
   </mat-grid-tile>
@@ -41,7 +41,10 @@
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
       <mat-error *ngIf="form.controls.vat?.hasError('invalidNumber')">
-        Błędna pole. Tylko liczby i .
+        Błędne pole. Tylko liczby i .
+      </mat-error>
+      <mat-error *ngIf="form.controls.vat?.hasError('confirmedValidator')">
+        Błędne pole
       </mat-error>
     </mat-form-field>
   </mat-grid-tile>
@@ -54,13 +57,12 @@
         matInput
         formControlName="gross"
         appCurrencyFormatter
-        (change)="onValueChanged()"
         #inputGross
         (change)="onChanged()"
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
       <mat-error *ngIf="form.controls.gross?.hasError('invalidNumber')">
-        Błędna pole. Tylko liczby i .
+        Błędne pole. Tylko liczby i .
       </mat-error>
     </mat-form-field>
     <span>

@@ -2,11 +2,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
 } from '@angular/forms';
 import { InvoiceSummary } from 'src/app/core/models/invoice';
 import { CalculationsService } from 'src/app/core/services/calculations.service';
+import { ConfirmedValidator } from 'src/app/core/validators/confirmed.validator';
 import { numbersAndDotValidator } from 'src/app/core/validators/numbers-and-dot-validator';
 
 @Component({
@@ -26,7 +28,10 @@ export class InvoiceContractorComponent implements OnInit {
     invoices: new FormArray([]),
   });
 
-  constructor(private calculationsService: CalculationsService) {}
+  constructor(
+    private calculationsService: CalculationsService,
+    private fb: FormBuilder,
+  ) {}
 
   public get invoices(): FormArray {
     return this.form.get('invoices') as FormArray;
@@ -44,12 +49,17 @@ export class InvoiceContractorComponent implements OnInit {
   }
 
   public createInvoiceItemGroup(): FormGroup {
-    return new FormGroup({
-      vatRate: new FormControl(23),
-      net: new FormControl(0, [numbersAndDotValidator()]),
-      vat: new FormControl(0, [numbersAndDotValidator()]),
-      gross: new FormControl(0, [numbersAndDotValidator()]),
-    });
+    return this.fb.group(
+      {
+        vatRate: new FormControl(23),
+        net: new FormControl(0, [numbersAndDotValidator()]),
+        vat: new FormControl(0, [numbersAndDotValidator()]),
+        gross: new FormControl(0, [numbersAndDotValidator()]),
+      },
+      {
+        validator: ConfirmedValidator('vatRate', 'net', 'vat', 'gross'),
+      },
+    );
   }
 
   public transformToFormGroup(input: AbstractControl): FormGroup {
