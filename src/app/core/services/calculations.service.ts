@@ -1,7 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { Injectable, InjectionToken } from '@angular/core';
 import { Invoice, InvoiceSummary } from '../models/invoice';
-export const CALCULATION_SERVICE_TOKEN = new InjectionToken<CalculationsService>('CalculationsService');
+export const CALCULATION_SERVICE_TOKEN =
+  new InjectionToken<CalculationsService>('CalculationsService');
 
 @Injectable({
   providedIn: 'root',
@@ -12,16 +13,25 @@ export class CalculationsService {
   public calculateTotal(invoices: Invoice[]): InvoiceSummary {
     return invoices.reduce<InvoiceSummary>(
       (acc, invoice) => ({
-        totalNet: Number(this.round(Number(acc.totalNet) + Number(invoice.net))),
-        totalVat: Number(this.round(Number(acc.totalVat) + Number(invoice.vat))),
-        totalGross: Number(this.round(Number(acc.totalGross) + Number(invoice.gross))),
+        totalNet: Number(
+          this.round(Number(acc.totalNet) + Number(invoice.net)),
+        ),
+        totalVat: Number(
+          this.round(Number(acc.totalVat) + Number(invoice.vat)),
+        ),
+        totalGross: Number(
+          this.round(Number(acc.totalGross) + Number(invoice.gross)),
+        ),
       }),
       { totalNet: 0, totalVat: 0, totalGross: 0 },
     );
   }
 
   public calculateNet(net: number, vat: number): number {
-    return Number(this.round(this.sanitizeNumber(net) * (1 + Number(vat / 100)))) ?? 0;
+    return (
+      Number(this.round(this.sanitizeNumber(net) * (1 + Number(vat / 100)))) ??
+      0
+    );
   }
 
   public caluculateGross(net: number, vat: number): number {

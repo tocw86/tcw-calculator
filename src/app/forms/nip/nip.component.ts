@@ -1,10 +1,11 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'tcw-nip',
@@ -13,10 +14,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NipComponent implements OnInit {
-  @Input() public form!: FormGroup;
+  @Input() public form: FormGroup | undefined;
   constructor() {}
 
   public ngOnInit(): void {
-    this.form?.addControl('nip', new FormControl('', { nonNullable: true }));
+    if (this.form?.get('nip')?.errors) {
+      this.form.get('nip')?.markAsTouched();
+    }
   }
 }

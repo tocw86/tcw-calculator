@@ -4,12 +4,8 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { currencyValidator } from 'src/app/core/validators/currency-validator';
-export enum IFormCurrency {
-  PLN = 'PLN',
-  USD = 'USD',
-}
+import { FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'tcw-currency',
   templateUrl: './currency.component.html',
@@ -21,13 +17,5 @@ export class CurrencyComponent implements OnInit {
 
   constructor() {}
 
-  public ngOnInit(): void {
-    this.form?.addControl(
-      'currency',
-      new FormControl<IFormCurrency>(IFormCurrency.PLN, {
-        nonNullable: true,
-        validators: [currencyValidator()],
-      }),
-    );
-  }
+  public ngOnInit(): void {}
 }

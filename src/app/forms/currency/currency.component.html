@@ -4,4 +4,7 @@
   <mat-error *ngIf="form.controls.currency?.hasError('invalidCurrency')">
     Błędna waluta.
   </mat-error>
+  <mat-error *ngIf="form.controls.currency?.hasError('required')">
+    Pole wymagane
+  </mat-error>
 </mat-form-field>

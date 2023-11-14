@@ -1,4 +1,14 @@
-<mat-form-field [formGroup]="form" class="full-width" *ngIf="form">
-  <mat-label>NIP</mat-label>
-  <input matInput placeholder="NIP" value="" formControlName="nip" />
-</mat-form-field>
+<ng-container *ngIf="form">
+  <mat-form-field [formGroup]="form" class="full-width">
+    <mat-label>NIP</mat-label>
+    <input matInput placeholder="NIP" formControlName="nip" [required]="true" />
+    <mat-error
+      *ngIf="
+        form.controls.nip.errors?.required &&
+        (form.controls.nip.touched || form.controls.nip.dirty)
+      "
+    >
+      Pole wymagane
+    </mat-error>
+  </mat-form-field>
+</ng-container>

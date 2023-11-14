@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="4:1" [formGroup]="form">
+<mat-grid-list cols="4" rowHeight="4:1" [formGroup]="form" *ngIf="form">
   <mat-grid-tile>
     <mat-form-field appearance="fill">
       <mat-label>Stawka VAT</mat-label>
@@ -20,6 +20,7 @@
         appCurrencyFormatter
         (change)="onValueChanged()"
         #inputNet
+        required
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
       <mat-error *ngIf="form.controls.net?.hasError('invalidNumber')">
@@ -27,6 +28,12 @@
       </mat-error>
       <mat-error *ngIf="form.controls.net?.hasError('confirmedValidator')">
         Błędne pole
+      </mat-error>
+      <mat-error *ngIf="form.controls.net?.hasError('required')">
+        Pole wymagane
+      </mat-error>
+      <mat-error *ngIf="form.controls.gross?.hasError('min')">
+        Minimalna wartość: 1
       </mat-error>
     </mat-form-field>
   </mat-grid-tile>
@@ -49,6 +56,12 @@
       <mat-error *ngIf="form.controls.vat?.hasError('confirmedValidator')">
         Błędne pole
       </mat-error>
+      <mat-error *ngIf="form.controls.vat?.hasError('required')">
+        Pole wymagane
+      </mat-error>
+      <mat-error *ngIf="form.controls.gross?.hasError('min')">
+        Minimalna wartość: 1
+      </mat-error>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
@@ -64,11 +77,18 @@
         (change)="onChanged()"
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
+
       <mat-error *ngIf="form.controls.gross?.hasError('invalidNumber')">
         Błędne pole. Tylko liczby i .
       </mat-error>
       <mat-error *ngIf="form.controls.gross?.hasError('confirmedValidator')">
         Błędne pole
+      </mat-error>
+      <mat-error *ngIf="form.controls.gross?.hasError('required')">
+        Pole wymagane
+      </mat-error>
+      <mat-error *ngIf="form.controls.gross?.hasError('min')">
+        Minimalna wartość: 1
       </mat-error>
     </mat-form-field>
     <span>

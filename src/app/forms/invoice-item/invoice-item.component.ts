@@ -1,6 +1,6 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -9,7 +9,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { VatRate, vatRates } from 'src/app/core/models/vat';
 import { CalculationsService } from 'src/app/core/services/calculations.service';
 import { EventService } from 'src/app/core/services/event.service';
@@ -25,7 +25,7 @@ export class InvoiceItemComponent implements OnInit {
   @ViewChild('inputVat') public inputVat!: ElementRef;
   @ViewChild('inputGross') public inputGross!: ElementRef;
 
-  @Input() public form!: FormGroup;
+  @Input() public form!: UntypedFormGroup;
   @Output() public emmitRemoveItem: EventEmitter<string> = new EventEmitter();
   @Output() public emmitNeedCalculateTotal: EventEmitter<boolean> =
     new EventEmitter();
@@ -46,7 +46,14 @@ export class InvoiceItemComponent implements OnInit {
     return this.form.get('gross')?.value ?? 0;
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    if (this.form) {
+      this.form.get('vatRate')?.markAsTouched();
+      this.form.get('net')?.markAsTouched();
+      this.form.get('gross')?.markAsTouched();
+      this.form.get('vat')?.markAsTouched();
+    }
+  }
 
   public removeItem(): void {
     this.emmitRemoveItem.emit();

@@ -1,5 +1,5 @@
-import { IFormCurrency } from './../../forms/currency/currency.component';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { IFormCurrency } from '../models/currency';
 
 export const currencyValidator =
   (): ValidatorFn =>

@@ -1,11 +1,6 @@
 <div class="tcw-container">
   <h1>Faktura kontraktowca</h1>
-  <form
-    *ngIf="form"
-    [formGroup]="form"
-    (ngSubmit)="onSubmit(form)"
-    #myform="ngForm"
-  >
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" #myform="ngForm">
     <mat-grid-list cols="2" rowHeight="4:1">
       <mat-grid-tile>
         <tcw-nip [form]="form"></tcw-nip>
@@ -19,6 +14,7 @@
 
     <div *ngFor="let item of invoices.controls; let i = index">
       <tcw-invoice-item
+        [group]="form"
         [form]="transformToFormGroup(item)"
         (emmitRemoveItem)="removeFromInvoices(i)"
         (emmitNeedCalculateTotal)="calculateTotal()"
@@ -28,8 +24,38 @@
     <div style="margin-top: 1rem">
       <tcw-invoice-total [total]="total"></tcw-invoice-total>
     </div>
-    <div>
-      <pre role="json">{{ form.value | json }}</pre>
+    <div style="margin-top: 1rem; text-align: right; width: 100%">
+      <mat-error
+        *ngIf="
+          form.controls.total.errors?.max &&
+          (form.controls.total.touched || form.controls.total.dirty)
+        "
+        >Błąd za wysoka kwota netto max. 1500</mat-error
+      >
+      <mat-error
+        *ngIf="
+          form.controls.total.errors?.min &&
+          (form.controls.total.touched || form.controls.total.dirty)
+        "
+        >Błąd za niska kwota netto min. 100</mat-error
+      >
+      <button
+        mat-raised-button
+        (click)="clearForm()"
+        [disabled]="form.untouched"
+      >
+        Usuń
+      </button>
+      <button mat-raised-button type="submit" [disabled]="form.invalid">
+        Zapisz
+      </button>
+      <button mat-raised-button disabled>
+        Zapisz i wyślij do zatwierdzenia
+      </button>
     </div>
   </form>
+  <!--
+  <div>
+    <pre role="json">{{ form.value | json }}</pre>
+  </div> -->
 </div>
