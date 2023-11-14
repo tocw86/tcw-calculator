@@ -62,6 +62,6 @@ export class InvoiceContractorComponent implements OnInit {
   public calculateTotal(): void {
     const { invoices } = this.form.value;
     const total = this.calculationsService.calculateTotal(invoices);
-    this.store.dispatch(save({ data: { total } }));
+    this.store.dispatch(save({  total }));
   }
 }

@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { TotalState } from './total.reducer';
+import { InvoiceSummary } from '../core/models/invoice';
 
 export const save = createAction(
   '[Invoice] Save Total',
-  props<{ data: TotalState }>(),
+  props<{ total: InvoiceSummary }>(),
 );
