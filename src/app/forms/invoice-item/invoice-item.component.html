@@ -29,11 +29,14 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
+      <!-- <input
+        (change)="onValueChanged()"
+      /> -->
       <input
         matInput
         formControlName="vat"
         appCurrencyFormatter
-        (change)="onValueChanged()"
+        (change)="onChanged()"
         #inputVat
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
@@ -44,12 +47,16 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field>
+      <!-- <input
+        (change)="onGrossValueChanged()"
+      /> -->
       <input
         matInput
         formControlName="gross"
         appCurrencyFormatter
-        (change)="onGrossValueChanged()"
+        (change)="onValueChanged()"
         #inputGross
+        (change)="onChanged()"
       />
       <mat-hint>Pole wspiera obliczenia</mat-hint>
       <mat-error *ngIf="form.controls.gross?.hasError('invalidNumber')">

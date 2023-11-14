@@ -15,7 +15,6 @@ import { InvoiceItemComponent } from './forms/invoice-item/invoice-item.componen
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { InvoiceTotalComponent } from './components/invoice-total/invoice-total.component';
-import { StoreModule } from '@ngrx/store';
 import { CurrencyPipe } from '@angular/common';
 import { CurrencyFormatterDirective } from './core/directives/currency-formatter.directive';
 import { MatIconModule } from '@angular/material/icon';

@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { InvoiceSummary } from 'src/app/core/models/invoice';
 
 @Component({
   selector: 'tcw-invoice-total',
   templateUrl: './invoice-total.component.html',
   styleUrls: ['./invoice-total.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceTotalComponent implements OnInit {
   @Input() public total: InvoiceSummary = {
@@ -13,9 +18,7 @@ export class InvoiceTotalComponent implements OnInit {
     totalNet: 0,
     totalVat: 0,
   };
-  constructor( ) {
-  }
+  constructor() {}
 
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 }

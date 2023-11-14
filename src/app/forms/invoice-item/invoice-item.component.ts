@@ -86,4 +86,8 @@ export class InvoiceItemComponent implements OnInit {
     this.eventService.dispatchBlur(this.inputVat);
     this.emmitNeedCalculateTotal.emit(true);
   }
+
+  public onChanged(): void {
+    this.emmitNeedCalculateTotal.emit(true);
+  }
 }

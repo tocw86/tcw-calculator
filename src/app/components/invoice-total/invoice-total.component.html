@@ -1,14 +1,21 @@
 <mat-grid-list cols="4" rowHeight="4:1">
   <mat-grid-tile>Razem:</mat-grid-tile>
-  <mat-grid-tile>{{ total.totalNet | currency: 'PLN': '' : '1.2-2'}}</mat-grid-tile>
-  <mat-grid-tile>{{ total.totalVat | currency: 'PLN': '' : '1.2-2'}}</mat-grid-tile>
-  <mat-grid-tile>{{ total.totalGross | currency: 'PLN': '' : '1.2-2'}}</mat-grid-tile>
+  <mat-grid-tile>{{
+    total.totalNet | currency: "PLN" : "" : "1.2-2"
+  }}</mat-grid-tile>
+  <mat-grid-tile>{{
+    total.totalVat | currency: "PLN" : "" : "1.2-2"
+  }}</mat-grid-tile>
+  <mat-grid-tile>{{
+    total.totalGross | currency: "PLN" : "" : "1.2-2"
+  }}</mat-grid-tile>
 </mat-grid-list>
 <mat-grid-list cols="4" rowHeight="4:1">
   <mat-grid-tile>Razem do zapłaty:</mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile>{{ total.totalGross | currency: 'PLN': '' : '1.2-2'}}</mat-grid-tile>
+  <mat-grid-tile>{{
+    total.totalGross | currency: "PLN" : "" : "1.2-2"
+  }}</mat-grid-tile>
 </mat-grid-list>
-<div>
-</div>
+<div></div>

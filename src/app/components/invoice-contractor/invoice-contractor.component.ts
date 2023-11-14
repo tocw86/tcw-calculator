@@ -16,7 +16,6 @@ import { numbersAndDotValidator } from 'src/app/core/validators/numbers-and-dot-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoiceContractorComponent implements OnInit {
-
   public total: InvoiceSummary = {
     totalGross: 0,
     totalNet: 0,
@@ -27,9 +26,7 @@ export class InvoiceContractorComponent implements OnInit {
     invoices: new FormArray([]),
   });
 
-  constructor(
-    private calculationsService: CalculationsService,
-  ) {}
+  constructor(private calculationsService: CalculationsService) {}
 
   public get invoices(): FormArray {
     return this.form.get('invoices') as FormArray;
@@ -48,7 +45,7 @@ export class InvoiceContractorComponent implements OnInit {
 
   public createInvoiceItemGroup(): FormGroup {
     return new FormGroup({
-      vatRate: new FormControl(null),
+      vatRate: new FormControl(23),
       net: new FormControl(0, [numbersAndDotValidator()]),
       vat: new FormControl(0, [numbersAndDotValidator()]),
       gross: new FormControl(0, [numbersAndDotValidator()]),

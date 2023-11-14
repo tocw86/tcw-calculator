@@ -130,7 +130,6 @@
         "*.ts"
       ],
       "extends": [
-        "plugin:@ngrx/recommended"
       ]
     }
   ]
