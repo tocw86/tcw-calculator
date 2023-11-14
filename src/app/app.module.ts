@@ -1,3 +1,4 @@
+import { totalReducer } from './store/total.reducer';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -19,6 +20,7 @@ import { StoreModule } from '@ngrx/store';
 import { CurrencyPipe } from '@angular/common';
 import { CurrencyFormatterDirective } from './core/directives/currency-formatter.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { InvoiceHeaderComponent } from './components/invoice-header/invoice-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     InvoiceItemComponent,
     InvoiceTotalComponent,
     CurrencyFormatterDirective,
+    InvoiceHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ total: totalReducer }),
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent],

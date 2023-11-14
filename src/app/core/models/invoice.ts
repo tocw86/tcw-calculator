@@ -4,3 +4,9 @@ export interface Invoice {
   vat: number;
   gross: number;
 }
+
+export interface InvoiceSummary {
+  totalNet: number;
+  totalVat: number;
+  totalGross: number;
+}

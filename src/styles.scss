@@ -1,5 +1,5 @@
-@import "~@angular/material/theming";
-@import "/src/custom-theme.scss";
+@import "@angular/material/theming";
+@import "custom-theme";
 @include angular-material-theme($custom-theme);
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -22,7 +22,7 @@ body {
     padding-right: 15px;
     width: 100%;
     margin-top: 1rem;
-    max-width: 960px;
+    max-width: 1200px;
     & .row {
       display: flex;
 

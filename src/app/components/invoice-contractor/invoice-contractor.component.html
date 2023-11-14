@@ -15,25 +15,13 @@
       </mat-grid-tile>
     </mat-grid-list>
 
-    <mat-grid-list cols="4" rowHeight="4:1">
-      <mat-grid-tile>
-        <div class="column text-bold">Stawka VAT</div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div class="column text-bold">Kwota netto</div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div class="column text-bold">Kwota VAT</div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div class="column text-bold">Kwota brutto</div>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <tcw-invoice-header></tcw-invoice-header>
 
     <div *ngFor="let item of invoices.controls; let i = index">
       <tcw-invoice-item
         [form]="transformToFormGroup(item)"
         (emmitRemoveItem)="removeFromInvoices(i)"
+        (emmitNeedCalculateTotal)="calculateTotal()"
       ></tcw-invoice-item>
     </div>
     <button mat-raised-button (click)="addInvoice()">Dodaj wiersz</button>

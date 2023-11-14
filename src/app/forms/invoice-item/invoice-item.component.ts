@@ -27,6 +27,8 @@ export class InvoiceItemComponent implements OnInit {
 
   @Input() public form!: FormGroup;
   @Output() public emmitRemoveItem: EventEmitter<string> = new EventEmitter();
+  @Output() public emmitNeedCalculateTotal: EventEmitter<boolean> =
+    new EventEmitter();
   public readonly vatRates: VatRate[] = vatRates;
 
   constructor(
@@ -48,6 +50,7 @@ export class InvoiceItemComponent implements OnInit {
 
   public removeItem(): void {
     this.emmitRemoveItem.emit();
+    this.emmitNeedCalculateTotal.emit(true);
   }
 
   public onValueChanged(): void {
@@ -56,9 +59,13 @@ export class InvoiceItemComponent implements OnInit {
       const gross = this.calculations.caluculateGross(this.net, vat);
       this.form.get('vat')?.setValue(vat);
       this.form.get('gross')?.setValue(gross);
-      this.eventService.dispatchBlur(this.inputGross);
-      this.eventService.dispatchBlur(this.inputVat);
+    } else if (this.vatRate === 0 && this.net) {
+      this.form.get('vat')?.setValue(0);
+      this.form.get('gross')?.setValue(this.net);
     }
+    this.eventService.dispatchBlur(this.inputGross);
+    this.eventService.dispatchBlur(this.inputVat);
+    this.emmitNeedCalculateTotal.emit(true);
   }
 
   public onGrossValueChanged(): void {
@@ -70,6 +77,13 @@ export class InvoiceItemComponent implements OnInit {
 
       this.eventService.dispatchBlur(this.inputNet);
       this.eventService.dispatchBlur(this.inputVat);
+    } else if (this.vatRate === 0 && this.gross) {
+      this.form.get('net')?.setValue(this.gross);
+      this.form.get('vat')?.setValue(0);
     }
+
+    this.eventService.dispatchBlur(this.inputNet);
+    this.eventService.dispatchBlur(this.inputVat);
+    this.emmitNeedCalculateTotal.emit(true);
   }
 }
