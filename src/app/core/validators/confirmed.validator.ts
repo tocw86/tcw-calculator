@@ -27,7 +27,8 @@ export function ConfirmedValidator(
         return null; // Do nothing if any of the values are not valid numbers
       }
 
-      if ((vatRateValue / 100) * Number(calculationsService.round(netValue)) === Number(calculationsService.round(vatValue))){
+      if (Number(calculationsService.round((vatRateValue / 100) * Number(calculationsService.round(netValue))))
+      === Number(calculationsService.round(vatValue))){
         controlNet.setErrors(null);
         controlVat.setErrors(null);
         controlGross.setErrors(null);
